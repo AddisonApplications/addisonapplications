@@ -245,12 +245,14 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             stroke-dasharray: 148px;
-            stroke-dashoffset: -148px
         }
 
         .logo-animation {
-            -webkit-animation:  animate-logo 2s forwards reverse;
             animation: animate-logo 2s forwards;
+        }
+
+        .logo-animation-safari {
+            animation: animate-logo 2s reverse;
         }
 
         @keyframes animate-logo {
@@ -310,7 +312,13 @@
 
         // animate logo
         var logoPath = document.getElementById("logo-path");
-        logoPath.setAttribute("class", "logo-animation");
+        var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (is_safari) {
+            logoPath.setAttribute("class", "logo-animation-safari");
+        } else {
+            logoPath.setAttribute("class", "logo-animation"); 
+        }
+        
 
         function startTime() {
             var bgContainer = document.querySelector('.logo-container');
