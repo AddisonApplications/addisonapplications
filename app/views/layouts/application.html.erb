@@ -284,6 +284,13 @@
          logoContainer.setAttribute("width", w);
          logoContainer.setAttribute("height", h);
 
+         window.addEventListener("resize", function() {
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            logoContainer.setAttribute("width", w);
+            logoContainer.setAttribute("height", h);
+         });
+
 
         // animate logo
         var logoPath = document.getElementById("logo-path");
