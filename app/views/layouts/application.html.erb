@@ -276,6 +276,15 @@
   </body>
   <script type="text/javascript">
       function initalizeFunctions() {
+
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+         var logoContainer = document.querySelector(".logo-container");
+         logoContainer.setAttribute("width", w);
+         logoContainer.setAttribute("height", h);
+
+
         // animate logo
         var logoPath = document.getElementById("logo-path");
         logoPath.setAttribute("class", "logo-animation");
