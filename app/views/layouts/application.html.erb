@@ -220,7 +220,6 @@
     <style type="text/css">
 
         .logo-container {
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -281,14 +280,14 @@
         var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
          var logoContainer = document.querySelector(".logo-container");
-         logoContainer.setAttribute("width", w);
-         logoContainer.setAttribute("height", h);
+         logoContainer.style.width = w + "px";
+         logoContainer.style.height = h + "px";
 
          window.addEventListener("resize", function() {
             var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
             var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            logoContainer.setAttribute("width", w);
-            logoContainer.setAttribute("height", h);
+            logoContainer.style.width = w + "px";
+            logoContainer.style.height = h + "px";
          });
 
 
