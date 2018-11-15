@@ -376,18 +376,29 @@
         }
         
         var secondIterator = 0;
+        var colorIterator = 0;
         function startTime() {
             var bgContainer = document.querySelector('.content-container');
             var today = new Date();
+            var d = today.getDay();
             var h = today.getHours();
             var m = today.getMinutes();
             var s = today.getSeconds();
             secondIterator = secondIterator + 1;
+            if ( secondIterator > 360 ) {
+                secondIterator = 0;
+            }
+            colorIterator = secondIterator + 1
+            if (colorIterator > 255) {
+                colorIterator = 0;
+            }
+            console.log(d)
+            d = checkTime(d);
             h = checkTime(h);
             m = checkTime(m);
             s = checkTime(s);
             // #ff9a9e to fad0c4
-            bgColor = "linear-gradient("+secondIterator+"deg, #FF"+m+s+" 0%, #000 50%)";
+            bgColor = "linear-gradient("+secondIterator+"deg, #"+d+h+secondIterator+" 0%, #000 50%)";
             console.log(secondIterator)
             bgContainer.style.backgroundImage = bgColor;
             // bgContainer.style["boxShadow"]  = "inset 0 0 0 1vw #009696, inset 0 0 0 2vw transparent, inset 0 0 0 3vw #009696, inset 0 0 0 4vw transparent, inset 0 0 0 5vw #009696";
