@@ -209,22 +209,21 @@
 
   </body>
   <script type="text/javascript">
-    // sets div to entire height and width
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-     var bgContainer = document.querySelector(".content-container");
-     bgContainer.style.width = w + "px";
-     bgContainer.style.height = h + "px";
+    var bgContainer = document.querySelector(".content-container");
+    bgContainer.style.width = w + "px";
+    bgContainer.style.height = h + "px";
 
-
-     // This prevents the pop up on ios from messing with the height
-     window.addEventListener("resize", function() {
+    window.addEventListener("resize", function() {
         var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
         bgContainer.style.width = w + "px";
         bgContainer.style.height = h + "px";
-     });
+    });
+
+    window.addEventListener("deviceorientation", handleOrientation, true);
 
     function handleOrientation(event) {
       // those angles are in degrees
@@ -232,6 +231,7 @@
       var beta = event.beta;
       var gamma = event.gamma;
 
+      // get time to use for gradient colors
       var today = new Date();
       var h = today.getHours();
       var m = today.getMinutes();
@@ -239,14 +239,6 @@
 
       h = checkTime(h);
       m = checkTime(m);
-      ms = checkTime(ms);
-
-      function checkTime(i) {
-          if (i < 10) {
-              i = "0" + i
-          };
-          return i;
-      }
 
       var redChannel = Date.now().toString().substr(7);
       var greenChannel = m;
@@ -257,7 +249,12 @@
       bgContainer.style.backgroundImage = bgColor;
     }
 
-    window.addEventListener("deviceorientation", handleOrientation, true);
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i
+        };
+        return i;
+    }
   </script>
 
 
