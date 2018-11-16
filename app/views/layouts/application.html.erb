@@ -601,25 +601,27 @@
       });
   </script>
   <script type="text/javascript">
-      window.addEventListener("deviceorientation", handleOrientation, true);
-      function handleOrientation(event) {
+    var logoContainer = document.querySelector(".content-container");
 
-          var logoContainer = document.querySelector(".content-container");
-          // those angles are in degrees
-          var alpha = event.alpha;  
-          var beta = event.beta;
-          var gamma = event.gamma;
+    window.addEventListener("deviceorientation", handleOrientation, true);
+    function handleOrientation(event) {
 
-          // JS math works in radians
-          var betaR = beta / 180 * Math.PI;
-          var gammaR = gamma / 180 * Math.PI;
-          var spinR = Math.atan2(Math.cos(betaR) * Math.sin(gammaR), Math.sin(betaR));
+      var logoContainer = document.querySelector(".content-container");
+      // those angles are in degrees
+      var alpha = event.alpha;  
+      var beta = event.beta;
+      var gamma = event.gamma;
 
-          // convert back to degrees
-          var spin = spinR * 180 / Math.PI;
+      // JS math works in radians
+      var betaR = beta / 180 * Math.PI;
+      var gammaR = gamma / 180 * Math.PI;
+      var spinR = Math.atan2(Math.cos(betaR) * Math.sin(gammaR), Math.sin(betaR));
 
-          logoContainer.insertBefore(spin, logoContainer);
-      }
+      // convert back to degrees
+      var spin = spinR * 180 / Math.PI;
+
+      logoContainer.insertAdjacentHTML("beforeBegin",'<p>'+spin+'</p>');
+    }
   </script>
 
 
