@@ -604,6 +604,42 @@
   <script type="text/javascript">
     var spinContainer = document.querySelector("#spin");
 
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+     var logoContainer = document.querySelector(".content-container");
+     logoContainer.style.width = w + "px";
+     logoContainer.style.height = h + "px";
+
+     window.addEventListener("resize", function() {
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        logoContainer.style.width = w + "px";
+        logoContainer.style.height = h + "px";
+     });
+
+
+    // animate logo
+    var logoPath = document.getElementsByClassName("logo-path");
+    var logoPathLength = logoPath.length;
+
+    for (var i = 0; i < logoPathLength; i++) {
+        var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        if (is_safari) {
+            logoPath[i].classList.add("logo-animation-safari");
+        } else {
+            logoPath[i].classList.add("logo-animation"); 
+        }
+    }
+    
+    var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (is_safari) {
+        logoPath.className += " logo-animation-safari";
+    } else {
+        logoPath.className += " logo-animation"; 
+    }
+    
+
     window.addEventListener("deviceorientation", handleOrientation, true);
     function handleOrientation(event) {
       // those angles are in degrees
@@ -611,21 +647,44 @@
       var beta = event.beta;
       var gamma = event.gamma;
 
-      // JS math works in radians
-      var betaR = beta / 180 * Math.PI;
-      var gammaR = gamma / 180 * Math.PI;
-      var spinR = Math.atan2(Math.cos(betaR) * Math.sin(gammaR), Math.sin(betaR));
+      spinContainer.innerHTML = gamma;
 
-      // convert back to degrees
-      var spin = spinR * 180 / Math.PI;
 
-      spinContainer.innerHTML = spin;
+      var bgContainer = document.querySelector('.content-container');
+      var today = new Date();
+      var month = today.getMonth();
+      var d = today.getDate();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      var ms = today.getMilliseconds();
 
-      // bgColor = "linear-gradient("+degree+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 15%)";
+      h = checkTime(h);
+      m = checkTime(m);
+      // s = checkTime(s);
+      ms = checkTime(ms);
 
-      // // console.log(bgColor)
+      function checkTime(i) {
+          if (i < 10) {
+              i = "0" + i
+          };
+          return i;
+      }
 
-      // bgContainer.style.backgroundImage = bgColor;
+      var redChannel = Date.now().toString().substr(7);
+      var greenChannel = m;
+      var blueChannel = s;
+
+
+      console.log(redChannel)
+
+
+
+      bgColor = "linear-gradient("+gamma+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 15%)";
+
+      // console.log(bgColor)
+
+      bgContainer.style.backgroundImage = bgColor;
     }
   </script>
 
