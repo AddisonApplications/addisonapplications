@@ -320,7 +320,7 @@
         }
     </style>
 
-    <p id="spin"></p>
+    <p id="spin">spin = no spin</p>
 
     <div class="content-container">
 
@@ -591,23 +591,21 @@
                 i = "0" + i
             };
             return i;
-        }1542311779110
+        }
 
         startTime()
 
       }
-      // call function on load
-      document.addEventListener("DOMContentLoaded", function() {
-        initalizeFunctions();
-      });
+      // // call function on load
+      // document.addEventListener("DOMContentLoaded", function() {
+      //   initalizeFunctions();
+      // });
   </script>
   <script type="text/javascript">
     var spinContainer = document.querySelector("#spin");
 
     window.addEventListener("deviceorientation", handleOrientation, true);
     function handleOrientation(event) {
-
-      var logoContainer = document.querySelector(".content-container");
       // those angles are in degrees
       var alpha = event.alpha;  
       var beta = event.beta;
@@ -621,7 +619,7 @@
       // convert back to degrees
       var spin = spinR * 180 / Math.PI;
 
-      logoContainer.innerHTML = spin;
+      spinContainer.innerHTML = spin;
 
       // bgColor = "linear-gradient("+degree+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 15%)";
 
