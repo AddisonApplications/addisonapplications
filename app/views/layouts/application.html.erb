@@ -320,6 +320,8 @@
         }
     </style>
 
+    <p id="spin"></p>
+
     <div class="content-container">
 
         <div class="logo-container">
@@ -575,7 +577,6 @@
 
 
 
-
             bgColor = "linear-gradient("+degree+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 15%)";
 
             // console.log(bgColor)
@@ -601,7 +602,7 @@
       });
   </script>
   <script type="text/javascript">
-    var logoContainer = document.querySelector(".content-container");
+    var spinContainer = document.querySelector("#spin");
 
     window.addEventListener("deviceorientation", handleOrientation, true);
     function handleOrientation(event) {
@@ -620,7 +621,13 @@
       // convert back to degrees
       var spin = spinR * 180 / Math.PI;
 
-      logoContainer.insertAdjacentHTML("beforeBegin",'<p>'+spin+'</p>');
+      logoContainer.innerHTML = spin;
+
+      // bgColor = "linear-gradient("+degree+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 15%)";
+
+      // // console.log(bgColor)
+
+      // bgContainer.style.backgroundImage = bgColor;
     }
   </script>
 
