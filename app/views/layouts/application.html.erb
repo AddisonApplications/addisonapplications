@@ -113,6 +113,7 @@
             }
         }
     </style>
+    <p id="test-element">Alpha: = No Alpha</p>
 
     <div class="content-container">
 
@@ -230,6 +231,9 @@
       var alpha = event.alpha;  
       var beta = event.beta;
       var gamma = event.gamma;
+
+      var testElement = document.getElementById('test-element');
+      testElement.innerHTML = alpha;
 
       // get time to use for gradient colors
       var today = new Date();
