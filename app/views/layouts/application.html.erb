@@ -240,9 +240,9 @@
       h = checkTime(h);
       m = checkTime(m);
 
-      var redChannel = Date.now().toString().substr(7);
-      var greenChannel = m;
-      var blueChannel = s;
+      var redChannel = 0;
+      var greenChannel = 100;
+      var blueChannel = alpha + 100;
 
       bgColor = "linear-gradient("+gamma+"deg, rgb("+redChannel+','+greenChannel+','+blueChannel+") 0%, #000 "+beta+"%)";
 
